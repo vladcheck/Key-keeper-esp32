@@ -1,4 +1,5 @@
 from machine import Pin, PWM
+from neopixel import NeoPixel
 import time
 
 
@@ -24,26 +25,31 @@ class Buzzer:
 
 
 # Инициализация пинов
-button_pins = [pin_in(16), pin_in(17), pin_in(19), pin_in(18)]
+button_pins = [pin_in(16), pin_in(17), pin_in(5), pin_in(18)]
 buzzer = Buzzer(15)
 size_x = 2
 size_y = 2
+lights = NeoPixel(pin_in(23), 7)
 
 
 def scan_matrix():
     button_pressed = False
     for i, pin in enumerate(button_pins):
-        if pin.value() == 1:
+        if pin.value() == 0:
             button_pressed = True
             x = i % size_x + 1
             y = i // size_y + 1
+            lights[i] = (255, 255, 255)
             print(f"Button {x}:{y} pressed")
             buzzer.on()  # Включаем звук
-
+            lights.write()
             pin.off()
 
     if not button_pressed:
         buzzer.off()  # Выключаем звук, если нет нажатых кнопок
+        for i in range(len(lights)):
+            lights[i] = (0, 0, 0)
+        lights.write()
 
 
 while True:

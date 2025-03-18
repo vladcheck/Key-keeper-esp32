@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Alexander Lev",
+  "author": "Vladimir Valekzhanin, Ssava Rezanov",
   "editor": "wokwi",
   "parts": [
     {
@@ -81,26 +81,26 @@
     }
   ],
   "connections": [
-    [ "esp:TX", "$serialMonitor:RX", "", [] ],
-    [ "esp:RX", "$serialMonitor:TX", "", [] ],
-    [ "bz1:2", "esp:15", "red", [ "v9.6", "h-96.4", "v-67.2" ] ],
-    [ "bz1:1", "esp:GND.2", "black", [ "h-38.4", "v-211.2" ] ],
-    [ "btn2:1.l", "esp:3V3", "red", [ "h-150.6", "v-54.8", "h-144.15" ] ],
-    [ "btn1:1.l", "btn2:1.l", "blue", [ "h0", "v67.2" ] ],
-    [ "btn3:1.l", "btn2:1.l", "blue", [ "h0" ] ],
-    [ "btn4:1.l", "btn2:1.l", "blue", [ "h0" ] ],
-    [ "btn2:2.r", "esp:19", "yellow", [ "h-170", "v-16.2" ] ],
-    [ "btn4:2.r", "esp:18", "yellow", [ "h0" ] ],
-    [ "btn3:2.r", "esp:17", "yellow", [ "h-309.8", "v194.8" ] ],
-    [ "btn1:2.r", "esp:16", "yellow", [ "h-165.8", "v194.8" ] ],
-    [ "led1:A", "btn1:2.r", "violet", [ "v0" ] ],
-    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
-    [ "led2:A", "btn3:2.r", "violet", [ "v0" ] ],
-    [ "led2:C", "esp:GND.2", "black", [ "v0" ] ],
-    [ "led3:A", "btn4:2.r", "violet", [ "v0" ] ],
-    [ "led3:C", "esp:GND.2", "black", [ "v-144", "h-336.4" ] ],
-    [ "led4:A", "btn2:2.r", "violet", [ "v0" ] ],
-    [ "led4:C", "esp:GND.2", "black", [ "v-134.4", "h-202" ] ]
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+    ["bz1:2", "esp:15", "red", ["v9.6", "h-96.4", "v-67.2"]],
+    ["bz1:1", "esp:GND.2", "black", ["h-38.4", "v-211.2"]],
+    ["btn2:1.l", "esp:3V3", "red", ["h-150.6", "v-54.8", "h-144.15"]],
+    ["btn1:1.l", "btn2:1.l", "blue", ["h0", "v67.2"]],
+    ["btn3:1.l", "btn2:1.l", "blue", ["h0"]],
+    ["btn4:1.l", "btn2:1.l", "blue", ["h0"]],
+    ["btn2:2.r", "esp:19", "yellow", ["h-170", "v-16.2"]],
+    ["btn4:2.r", "esp:18", "yellow", ["h0"]],
+    ["btn3:2.r", "esp:17", "yellow", ["h-309.8", "v194.8"]],
+    ["btn1:2.r", "esp:16", "yellow", ["h-165.8", "v194.8"]],
+    ["led1:A", "btn1:2.r", "violet", ["v0"]],
+    ["led1:C", "esp:GND.2", "black", ["v0"]],
+    ["led2:A", "btn3:2.r", "violet", ["v0"]],
+    ["led2:C", "esp:GND.2", "black", ["v0"]],
+    ["led3:A", "btn4:2.r", "violet", ["v0"]],
+    ["led3:C", "esp:GND.2", "black", ["v-144", "h-336.4"]],
+    ["led4:A", "btn2:2.r", "violet", ["v0"]],
+    ["led4:C", "esp:GND.2", "black", ["v-134.4", "h-202"]]
   ],
   "dependencies": {}
 }
