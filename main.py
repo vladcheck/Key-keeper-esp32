@@ -25,11 +25,11 @@ class Buzzer:
 
 
 # Инициализация пинов
-button_pins = [pin_in(16), pin_in(17), pin_in(5), pin_in(18)]
-buzzer = Buzzer(15)
+button_pins = [pin_in(23), pin_in(34)]
+buzzer = Buzzer(17)
 size_x = 2
 size_y = 2
-lights = NeoPixel(pin_in(23), 7)
+lights = NeoPixel(pin_in(13), 4)
 
 
 def scan_matrix():
