@@ -2,15 +2,8 @@ from machine import Pin, PWM
 from neopixel import NeoPixel
 import time
 
-def turn_light_on(i):
-    x = i % size_x + 1
-    y = i // size_y + 1
-    lights[i] = (255, 255, 255)
-    print(f"Button {x}:{y} pressed")
-
 def pin_in(number):
     return Pin(number, Pin.IN, Pin.PULL_DOWN)
-
 
 class Buzzer:
     def __init__(self, pin):
@@ -28,23 +21,28 @@ class Buzzer:
             self.pwm.duty(0)
             self.active = False
 
-
 # Инициализация пинов
-button_pins = [pin_in(33), pin_in(14)]
+button_rows = [pin_in(12), pin_in(13)]
+button_columns = [pin_in(26), pin_in(27)]
 buzzer = Buzzer(23)
-lights = NeoPixel(pin_in(34), 4)
+lights = NeoPixel(Pin(32, Pin.OUT), 4)
 size_x = 2
 size_y = 2
 
 def scan_matrix():
     button_pressed = False
-    for i, pin in enumerate(button_pins):
-        if pin.value() == 0:
-            button_pressed = True
-            turn_light_on(i)
-            buzzer.on()  # Включаем звук
-            lights.write()
-            pin.off()
+    for row_num, row_pin in enumerate(button_rows):
+        row_pin.on()
+
+        for col_num, col_pin in enumerate(button_columns):
+            if col_pin.value() == 0:
+                button_pressed = True
+                lights[(col_num+row_num+1)] = (255, 255, 255)
+                lights.write()
+                buzzer.on()
+                print(f"Button {row_num}:{col_num} pressed")
+
+        row_pin.off()
 
     if not button_pressed:
         buzzer.off()  # Выключаем звук, если нет нажатых кнопок
@@ -52,9 +50,7 @@ def scan_matrix():
             lights[i] = (0, 0, 0)
         lights.write()
 
-
+buzzer.off()
 while True:
     scan_matrix()
-    print("dasfjdsla")
-    turn_light_on(0)
     time.sleep(0.05)  # Уменьшили задержку для лучшей реакции
